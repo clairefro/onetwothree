@@ -24,14 +24,6 @@ function login(req, res) {
 		algorithm: "HS256",
 		expiresIn: process.env.ACCESS_TOKEN_LIFE,
 	});
-	payload[accessToken] = accessToken;
-	console.log({ accessToken });
-	//create the refresh token with the longer lifespan
-	let refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
-		algorithm: "HS256",
-		expiresIn: process.env.REFRESH_TOKEN_LIFE,
-	});
-	console.log({ refreshToken });
 
 	//store the refresh token in the user array
 	users[username].refreshToken = refreshToken;
