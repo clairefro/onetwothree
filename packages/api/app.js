@@ -16,7 +16,6 @@ app.post("/logout", logout);
 app.post("/am-i-in", verify, (req, res) => {
 	res.send("You're in");
 });
-// app.post("/refrsh", refresh);
 
 // app.get("/leaderboard", routeHandler);
 

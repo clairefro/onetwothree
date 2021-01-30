@@ -25,9 +25,6 @@ function login(req, res) {
 		expiresIn: process.env.ACCESS_TOKEN_LIFE,
 	});
 
-	//store the refresh token in the user array
-	users[username].refreshToken = refreshToken;
-
 	//send the access token to the client inside a cookie
 	// WARNING! Do no use in production. Not secure.
 	// Omit options secure and httpOnly so that auth can be used in localhost
