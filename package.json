@@ -1,7 +1,14 @@
 {
-  "name": "onetwothree",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Claire Froelich",
-  "license": "MIT"
+	"name": "onetwothree",
+	"private": true,
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "Claire Froelich",
+	"license": "MIT",
+	"workspaces": [
+		"packages/*"
+	],
+	"dependencies": {
+		"concurrently": "5.3.0"
+	}
 }

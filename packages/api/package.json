@@ -6,7 +6,7 @@
 	"author": "Claire Froelich",
 	"license": "MIT",
 	"scripts": {
-		"dev": "nodemon app.js"
+		"dev": "nodemon -r dotenv/config app.js"
 	},
 	"dependencies": {
 		"cookie-parser": "1.4.5",

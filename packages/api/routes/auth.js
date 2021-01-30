@@ -16,6 +16,7 @@ exports.login = function (req, res) {
 	}
 
 	//use the payload to store information about the user such as username, user role, etc.
+
 	let payload = { username: username };
 
 	//create the access token with the shorter lifespan
@@ -23,7 +24,7 @@ exports.login = function (req, res) {
 		algorithm: "HS256",
 		expiresIn: process.env.ACCESS_TOKEN_LIFE,
 	});
-
+	payload[accessToken] = accessToken;
 	console.log({ accessToken });
 	//create the refresh token with the longer lifespan
 	let refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
@@ -36,6 +37,7 @@ exports.login = function (req, res) {
 	users[username].refreshToken = refreshToken;
 
 	//send the access token to the client inside a cookie
-	res.cookie("jwt", accessToken, { secure: true, httpOnly: false });
+	// res.cookie("jwt", accessToken /* { secure: false, httpOnly: false }*/);
+	res.setHeader("Set-Cookie", `jwt=${accessToken}`);
 	res.send({ username });
 };
