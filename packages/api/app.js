@@ -6,17 +6,19 @@ const { verify } = require("./utils/verify");
 
 const port = process.env.PORT || 4444;
 
-const { login /*, refresh */ } = require("./routes/auth");
+const { login, logout } = require("./routes/auth");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
 app.post("/login", login);
-app.post("/logged-in-world", verify, (req, res) => {
-	console.log({ reqCookies: req.cookies });
+app.post("/logout", logout);
+app.post("/am-i-in", verify, (req, res) => {
 	res.send("You're in");
 });
 // app.post("/refrsh", refresh);
+
+// app.get("/leaderboard", routeHandler);
 
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);
