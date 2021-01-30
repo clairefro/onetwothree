@@ -11,8 +11,7 @@ function login(req, res) {
 	const { username, password } = req.body;
 
 	if (!username || !password || users[username].password !== password) {
-		console.log("entered 401");
-		return res.status(401).send();
+		return res.status(401).send("Missing or invalid username or password");
 	}
 
 	//use the payload to store information about the user such as username, user role, etc.

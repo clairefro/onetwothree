@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 // super not secure
 const userSchema = new mongoose.Schema({
 	username: String,
