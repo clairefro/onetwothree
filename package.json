@@ -8,6 +8,9 @@
 	"workspaces": [
 		"packages/*"
 	],
+	"scripts": {
+		"dev": "yarn workspace onetwothree-api dev & yarn workspace onetwothree-client dev"
+	},
 	"dependencies": {
 		"concurrently": "5.3.0"
 	}
