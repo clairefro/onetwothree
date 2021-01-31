@@ -4,19 +4,29 @@ import { Button } from '../blocks/Button';
 import { Form } from '../blocks/Form';
 import { Input } from '../blocks/Input';
 import { ErrorMessage } from '@hookform/error-message';
-import { FormValidationError } from './FormValidationError';
+import { useContext } from '../../context/AppContext';
+
+interface LoginInput {
+  username: string;
+  password: string;
+}
 
 export const LoginForm: FC = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const { register, handleSubmit, errors } = useForm();
+  const { setUser } = useContext();
 
-  console.log(watch('example')); // watch input value by passing the name of it
+  const onSubmit = async (input: LoginInput) => {
+    // TODO: make call to backend
+
+    setUser(input);
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         label={'Username'}
         name="username"
+        required
         ref={register({ required: true })}
       />
 
@@ -24,6 +34,7 @@ export const LoginForm: FC = () => {
         label={'Password'}
         name="password"
         type="password"
+        required
         ref={register({ required: true })}
       />
       <ErrorMessage errors={errors} name="username" />

@@ -7,10 +7,18 @@ let users = {
 	cartman: { password: "respectmahauthoritay" },
 };
 
-function login(req, res) {
+async function login(req, res) {
 	const { username, password } = req.body;
 
-	if (!username || !password || users[username].password !== password) {
+	let user = null;
+
+	try {
+		user = await User.find({ username });
+	} catch (e) {
+		return res.status(500).send("Uh oh, something went wrong in our backend...");
+	}
+
+	if (!username || !password || !user || !user.password !== password) {
 		return res.status(401).send("Missing or invalid username or password");
 	}
 

@@ -4,11 +4,13 @@ import { AppContext } from './context/AppContext';
 import { GloablLayout } from './layouts/GlobalLayout';
 import { routes } from './routes';
 
+export type UserState = User | null;
+
 function App() {
-  const [user, setUser] = useState<User | null>(null);
-  const login = (u: User) => setUser(u);
-  const logout = () => setUser(null);
-  const context = { user, login, logout };
+  const [user, setUser] = useState<UserState>(null);
+  // const login = (u: User) => setUser(u);
+  // const logout = () => setUser(null);
+  const context = { user, setUser };
   return (
     <div className="App">
       <AppContext.Provider value={context}>

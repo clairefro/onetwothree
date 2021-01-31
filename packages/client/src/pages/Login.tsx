@@ -1,5 +1,7 @@
 import React, { FC, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { LoginForm } from '../components/forms/LoginForm';
+import { useContext } from '../context/AppContext';
 import { apiCall } from '../utils/apiCall';
 
 export const Login: FC = () => {
@@ -11,9 +13,15 @@ export const Login: FC = () => {
     getUsers();
   }, []);
 
+  const { user } = useContext();
+
+  if (!!user) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div>
-      <div className="max-w-sm">
+      <div className="max-w-sm mx-auto">
         <LoginForm />
       </div>
     </div>
