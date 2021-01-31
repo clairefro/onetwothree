@@ -8,6 +8,7 @@ export interface LoginInput {
 export interface UserDao {
   login: (input: LoginInput) => Promise<User>;
   logout: () => Promise<boolean>;
+  signup: (input: LoginInput) => Promise<User>;
 }
 
 // error handling in components
@@ -20,5 +21,10 @@ export class UserDaoImpl implements UserDao {
   async logout() {
     // TODO
     return true;
+  }
+
+  async signup(input: LoginInput): Promise<User> {
+    const user = await apiCall.post<User>('/users', input);
+    return user;
   }
 }
