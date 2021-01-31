@@ -4,12 +4,16 @@ import { useContext } from '../context/AppContext';
 import { Button } from './blocks/Button';
 
 export const Navbar: FC = () => {
-  const { setUser, user } = useContext();
+  const { setUser, user, userDao, notify } = useContext();
   const isLoggedIn = !!user;
 
-  const logout = () => {
-    // TODO: make call to backend
-    setUser(null);
+  const logout = async () => {
+    try {
+      await userDao.logout();
+      setUser(null);
+    } catch (e) {
+      notify.error(e.message);
+    }
   };
 
   const nonAuthView = (

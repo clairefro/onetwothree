@@ -11,7 +11,7 @@ export interface UserDao {
   signup: (input: LoginInput) => Promise<User>;
 }
 
-// error handling in components
+// errors handled in components
 export class UserDaoImpl implements UserDao {
   async login(input: LoginInput): Promise<User> {
     const user = await apiCall.post<User>('/login', input);
@@ -19,8 +19,8 @@ export class UserDaoImpl implements UserDao {
   }
 
   async logout() {
-    // TODO
-    return true;
+    const success = await apiCall.post<boolean>('/logout');
+    return success;
   }
 
   async signup(input: LoginInput): Promise<User> {
