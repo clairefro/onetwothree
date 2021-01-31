@@ -42,7 +42,7 @@ export const Navbar: FC = () => {
     <nav className="bg-gray-900 py-2 px-6 w-full flex justify-between">
       <div className="flex items-center">
         <Link to="/">
-          <span className="sm:text-2xl">1ne2wo3ee</span>
+          <span className="text-xl sm:text-2xl text-white">1ne2wo3ee</span>
         </Link>
       </div>
       <div>{isLoggedIn ? authView : nonAuthView}</div>

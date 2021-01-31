@@ -1,18 +1,9 @@
 import React, { FC, useState } from 'react';
 import { Button } from './blocks/Button';
-import { Form } from './blocks/Form';
 import { Select } from './blocks/Select';
 import { Option } from './blocks/Option';
 import { useHistory } from 'react-router-dom';
-
-type Languages = 'en' | 'es' | 'fr' | 'ja';
-
-const options: { [key in Languages]: string } = {
-  en: 'English',
-  es: 'Español',
-  fr: 'Français',
-  ja: '日本語',
-};
+import { LANG_OPTIONS } from '../constants';
 
 const defaultLang: Languages = 'en';
 
@@ -40,7 +31,7 @@ export const NewGameButton: FC = () => {
           defaultValue={defaultLang}
           style={{ width: 'max-content' }}
         >
-          {Object.entries(options).map(([lang, label]) => (
+          {Object.entries(LANG_OPTIONS).map(([lang, label]) => (
             <Option key={lang} value={lang} label={label} />
           ))}
         </Select>
