@@ -56,6 +56,8 @@ export const Game: FC<Props> = ({ lang }) => {
     setScore(0);
     setStreak(0);
     setLives(INITIAL_LIVES);
+    setGameover(false);
+    startGame();
   };
 
   const gameNotOverView = (

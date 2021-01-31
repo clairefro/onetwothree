@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { H1 } from '../components/blocks/H1';
 import { Game } from '../components/Game';
 import { LANG_OPTIONS } from '../constants';
+import { useContext } from '../context/AppContext';
 import { useQuery } from '../hooks/queryParams';
 
 interface MatchParams {
@@ -21,6 +22,10 @@ const SendHome: FC = () => (
 );
 
 export const GamePage: FC<MatchProps> = ({ match }) => {
+  const { user } = useContext();
+  console.log({ user });
+  if (!user) return <Redirect to="/login" />;
+
   const query = useQuery();
   const lang = (query.get('lang') as unknown) as Languages;
 

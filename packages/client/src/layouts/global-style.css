@@ -12,3 +12,12 @@
 body {
   font-family: 'Quicksand', sans-serif;
 }
+
+/* Animations */
+.Stat {
+  transition: all 0.2s;
+}
+
+.Stat.animated {
+  transform: scale(1.5);
+}

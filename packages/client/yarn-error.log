@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add react-circle-timer
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types/hoc-react-animate
 
 PATH: 
   /home/claire/anaconda3/condabin:./bin:./node_modules/.bin:/anaconda3/bin:/home/claire/anaconda3/bin:/home/claire/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/sbin
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-circle-timer: Not found
+  Error: https://registry.yarnpkg.com/@types%2fhoc-react-animate: Not found
       at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
       at Request.emit (events.js:314:20)
@@ -43,7 +43,9 @@ npm manifest:
       "@types/axios": "0.14.0",
       "autoprefixer": "10.2.4",
       "axios": "0.21.1",
+      "hoc-react-animate": "0.3.0",
       "react": "^17.0.0",
+      "react-countdown-circle-timer": "2.4.0",
       "react-dom": "^17.0.0",
       "react-hook-form": "6.14.2",
       "react-router-dom": "5.2.0",
@@ -60,6 +62,7 @@ npm manifest:
       "@types/chai": "^4.2.13",
       "@types/mocha": "^8.2.0",
       "@types/react": "^17.0.0",
+      "@types/react-countdown-circle-timer": "1.0.0",
       "@types/react-dom": "^17.0.0",
       "@types/react-router-dom": "5.1.7",
       "@types/snowpack-env": "^2.3.2",
@@ -615,6 +618,13 @@ Lockfile:
     version "1.2.3"
     resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
     integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
+  
+  "@types/react-countdown-circle-timer@1.0.0":
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/@types/react-countdown-circle-timer/-/react-countdown-circle-timer-1.0.0.tgz#e19648a1b52888f8781b9154fed88a7d6da9dd3a"
+    integrity sha512-6ZZ0PAhFuLXDNKRMJcoXlu/guZ7+VVDzO04QU7bPJfQiqH6HfEtw1yJbGp4B871Y92uHSC3e+cSp06nzAn7tUQ==
+    dependencies:
+      "@types/react" "*"
   
   "@types/react-dom@^17.0.0":
     version "17.0.0"
@@ -2125,6 +2135,11 @@ Lockfile:
       tiny-warning "^1.0.0"
       value-equal "^1.0.1"
   
+  hoc-react-animate@0.3.0:
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/hoc-react-animate/-/hoc-react-animate-0.3.0.tgz#07903f194c6c19073baac890559d5270d046b60b"
+    integrity sha1-B5A/GUxsGQc7qsiQVZ1ScNBGtgs=
+  
   hoist-non-react-statics@^3.1.0:
     version "3.3.2"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
@@ -3541,6 +3556,13 @@ Lockfile:
       minimist "^1.2.0"
       strip-json-comments "~2.0.1"
   
+  react-countdown-circle-timer@2.4.0:
+    version "2.4.0"
+    resolved "https://registry.yarnpkg.com/react-countdown-circle-timer/-/react-countdown-circle-timer-2.4.0.tgz#9d07dc63073265876ee54caf8f76baaf8b9946f6"
+    integrity sha512-ooJNThmJJb5BdRbDHPRc5dyP5Zl1uuCwifuOk4HP0MkeAq3ePZx2E7bcKC5O6wvdsa2YFBIrndCsHwUkSc7qxQ==
+    dependencies:
+      use-elapsed-time "2.1.6"
+  
   react-dom@^17.0.0:
     version "17.0.1"
     resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
@@ -4333,6 +4355,11 @@ Lockfile:
     integrity sha1-FrXK/Afb42dsGxmZF3gj1lA6yww=
     dependencies:
       prepend-http "^2.0.0"
+  
+  use-elapsed-time@2.1.6:
+    version "2.1.6"
+    resolved "https://registry.yarnpkg.com/use-elapsed-time/-/use-elapsed-time-2.1.6.tgz#8ad0c0054a1ba7bf881540855b5eb2d60ff501be"
+    integrity sha512-6h6bY63oto1REUqcID3Goedgl5tVqWXsLzUSJ6EB9VprqZqnO5VDo1kkQqY/6V5Jc4Wu4XUgW3B8aDUHG2KRcA==
   
   util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
     version "1.0.2"
