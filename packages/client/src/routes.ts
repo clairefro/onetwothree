@@ -3,6 +3,7 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { NotFound } from './pages/NotFound';
 import { Signup } from './pages/Signup';
+import { Game } from './pages/Game';
 
 interface Route {
   path: string;
@@ -18,6 +19,10 @@ export const routes: Route[] = [
   {
     path: '/signup',
     component: Signup,
+  },
+  {
+    path: '/game',
+    component: Game,
   },
   {
     path: '/',
