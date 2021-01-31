@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 type InputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -9,17 +9,20 @@ type InputProps = React.DetailedHTMLProps<
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
+  hideLabel?: boolean;
 }
 
 export const Input = React.forwardRef<InputProps, Props>(function input(
-  { name, label, ...rest },
+  { name, label, hideLabel = false, ...rest },
   passedRef,
 ) {
   const inputClasses = 'w-full text-black mb-2 p-2 rounded';
 
   return (
     <>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className={hideLabel ? 'hidden' : ''}>
+        {label}
+      </label>
       <input
         {...rest}
         name={name}
