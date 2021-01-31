@@ -2053,6 +2053,11 @@ history@^4.9.0:
     tiny-warning "^1.0.0"
     value-equal "^1.0.1"
 
+hoc-react-animate@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/hoc-react-animate/-/hoc-react-animate-0.3.0.tgz#07903f194c6c19073baac890559d5270d046b60b"
+  integrity sha1-B5A/GUxsGQc7qsiQVZ1ScNBGtgs=
+
 hoist-non-react-statics@^3.1.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
