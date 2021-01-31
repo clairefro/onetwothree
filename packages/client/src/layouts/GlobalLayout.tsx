@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { Navbar } from '../components/Navbar';
+import { ToastContainer } from 'react-toastify';
 
 import './global-style.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const GloablLayout: FC = ({ children }) => {
   return (
@@ -10,6 +12,7 @@ export const GloablLayout: FC = ({ children }) => {
       <div className="container mx-auto max-w-screen-lg py-12 px-6">
         {children}
       </div>
+      <ToastContainer newestOnTop position="top-center" hideProgressBar />
     </div>
   );
 };

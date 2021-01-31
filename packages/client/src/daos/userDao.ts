@@ -6,19 +6,15 @@ export interface LoginInput {
 }
 
 export interface UserDao {
-  login: (input: LoginInput) => Promise<User | void>;
+  login: (input: LoginInput) => Promise<User>;
   logout: () => Promise<boolean>;
 }
 
-// error hangling in components instead?
+// error handling in components
 export class UserDaoImpl implements UserDao {
-  async login(input: LoginInput) {
-    try {
-      const user = await apiCall.post<User>('/login', input);
-      return user;
-    } catch (e) {
-      alert(e);
-    }
+  async login(input: LoginInput): Promise<User> {
+    const user = await apiCall.post<User>('/login', input);
+    return user;
   }
 
   async logout() {

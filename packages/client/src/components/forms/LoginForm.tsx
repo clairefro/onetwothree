@@ -9,11 +9,17 @@ import type { LoginInput } from '../../daos/userDao';
 
 export const LoginForm: FC = () => {
   const { register, handleSubmit, errors } = useForm();
-  const { setUser, userDao } = useContext();
+  const { setUser, userDao, notify } = useContext();
 
   const onSubmit = async (input: LoginInput) => {
-    const user = await userDao.login(input);
-    user && setUser(user);
+    try {
+      const user = await userDao.login(input);
+      setUser(user);
+      notify.success(`Welcome back, ${user.username}`);
+    } catch {
+      // purpousfully ambiguous error
+      notify.error('Uh oh, something went wrong :(');
+    }
   };
 
   return (
@@ -45,10 +51,3 @@ export const LoginForm: FC = () => {
     </Form>
   );
 };
-
-{
-  /* <FormValidationError
-  reveal={!!errors?.password}
-  msg={errors?.password?.message || 'need password'}
-/> */
-}
