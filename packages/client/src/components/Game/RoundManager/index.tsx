@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { generateRandomNumber } from '../../../utils/game';
+import { calculatePoints, generateRandomNumber } from '../../../utils/game';
 import { Countdown } from '../../Countdown';
 import { CurrentNumber } from './CurrentNumber';
 import { UserAnswer } from '../../forms/UserAnswer';
@@ -70,7 +70,7 @@ export const RoundManager: FC<Props> = ({
   };
 
   const incrementStreak = () => {
-    setScore((prev) => prev + 1);
+    setStreak((prev) => prev + 1);
   };
 
   const startRound = () => {
@@ -95,8 +95,8 @@ export const RoundManager: FC<Props> = ({
     const userIsRight = userAnswer === correctAnswer;
 
     if (userIsRight) {
-      // TODO: Implement score strategy by digit count
-      addToScore(50);
+      const points = calculatePoints(currentNum);
+      addToScore(points);
       incrementStreak();
     } else {
       notify.error(pluck(badJobMsgs), { autoClose: 1000 });
