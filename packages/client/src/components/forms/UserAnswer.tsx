@@ -14,13 +14,14 @@ interface Props {
 }
 
 export const UserAnswer: FC<Props> = ({ setUserAnswer }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const { userDao, notify } = useContext();
 
   const onSubmit = async ({ userAnswer }: UserAnswer) => {
     console.log('answer submitted');
     console.log({ userAnswer });
     setUserAnswer(userAnswer.trim());
+    reset();
   };
 
   return (

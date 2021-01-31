@@ -6,19 +6,23 @@ import React, {
   useState,
 } from 'react';
 import { generateRandomNumber } from '../../../utils/game';
-import { Button } from '../../blocks/Button';
 import { Countdown } from '../../Countdown';
 import { CurrentNumber } from './CurrentNumber';
 import { UserAnswer } from '../../forms/UserAnswer';
 import { useContext } from '../../../context/AppContext';
 import { pluck } from '../../../utils/pluck';
+import { tts } from '../../../utils/tts';
 
 interface Props {
   setLives: Dispatch<SetStateAction<number>>;
   setScore: Dispatch<SetStateAction<number>>;
   setStreak: Dispatch<SetStateAction<number>>;
   gameInPlay: boolean;
+  lang: Languages;
+  lives: number;
 }
+
+const TIME_TO_ANSWER = 10; // seconds
 
 const badJobMsgs = ['Ouch!', 'Yikes...', 'Keep trying!', "Don't give up!"];
 
@@ -33,6 +37,8 @@ export const RoundManager: FC<Props> = ({
   setScore,
   setStreak,
   gameInPlay,
+  lang,
+  lives,
 }) => {
   const [roundHash, setRoundHash] = useState<number>(0);
   const [currentNum, setCurrentNum] = useState<number | null>(null);
@@ -47,7 +53,8 @@ export const RoundManager: FC<Props> = ({
 
   useEffect(() => {
     // startRound
-    if (gameInPlay) {
+    console.log('round start!');
+    if (gameInPlay && !!lives) {
       startRound();
     }
   }, [roundHash, gameInPlay]);
@@ -58,58 +65,64 @@ export const RoundManager: FC<Props> = ({
     }
   }, [userAnswer]);
 
-  const loseLife = () => {
-    setLives((prev) => prev - 1);
+  const addToScore = (points: number) => {
+    setScore((prev) => prev + points);
   };
 
-  const incrementScore = () => {
+  const incrementStreak = () => {
     setScore((prev) => prev + 1);
   };
 
   const startRound = () => {
-    // generate random number
     const randomNum = generateRandomNumber();
-    console.log({ randomNum });
-    // display random number to screen
+    tts(randomNum, lang);
     setCurrentNum(randomNum);
   };
 
   const checkAnswer = (): [boolean, number] | void => {
-    console.log('countdown completed');
-    if (!currentNum) return [true, 100];
+    console.log('checking answer');
+    const resetParams: [boolean, number] = [true, 100];
+
+    if (!currentNum) {
+      decrementLives();
+      nextRound();
+      return resetParams;
+    }
+
     const correctAnswer = currentNum.toString();
+    console.log({ userAnswer, correctAnswer });
+    console.log(userAnswer === correctAnswer);
     const userIsRight = userAnswer === correctAnswer;
-    console.log({ userIsRight });
+
     if (userIsRight) {
       // TODO: Implement score strategy by digit count
-      setScore((prev) => prev + 50);
-      setStreak((prev) => prev + 1);
+      addToScore(50);
+      incrementStreak();
     } else {
       notify.error(pluck(badJobMsgs), { autoClose: 1000 });
-      setLives((prev) => prev - 1);
+      decrementLives();
     }
     nextRound();
-    return [true, 100];
+    return resetParams;
   };
 
-  const gameplay = (
-    <>
-      <UserAnswer setUserAnswer={setUserAnswer} />
-      <Countdown
-        seconds={2}
-        key={roundHash}
-        onComplete={checkAnswer}
-        colors={countdownColors}
-      />
-    </>
-  );
+  const decrementLives = () => {
+    setLives((prev) => prev - 1);
+  };
 
+  if (!gameInPlay) return null;
   return (
-    <div>
+    <div className="flex flex-col justify-center">
       {currentNum && <CurrentNumber value={currentNum} />}
-      {gameInPlay && gameplay}
-      <Button onClick={incrementScore}>increment score</Button>
-      <Button onClick={loseLife}>decrease lives</Button>
+      <UserAnswer setUserAnswer={setUserAnswer} />
+      <div className="my-4 mx-auto">
+        <Countdown
+          seconds={TIME_TO_ANSWER}
+          key={roundHash}
+          onComplete={checkAnswer}
+          colors={countdownColors}
+        />
+      </div>
     </div>
   );
 };

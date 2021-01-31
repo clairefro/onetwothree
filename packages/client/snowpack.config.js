@@ -27,7 +27,4 @@ module.exports = {
   buildOptions: {
     /* ... */
   },
-  installOptions: {
-    treeshake: true,
-  },
 };
