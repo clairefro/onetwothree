@@ -3,7 +3,7 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { NotFound } from './pages/NotFound';
 import { Signup } from './pages/Signup';
-import { Game } from './pages/Game';
+import { GamePage } from './pages/GamePage';
 
 interface Route {
   path: string;
@@ -22,7 +22,7 @@ export const routes: Route[] = [
   },
   {
     path: '/game',
-    component: Game,
+    component: GamePage,
   },
   {
     path: '/',
