@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
 import { GloablLayout } from './layouts/GlobalLayout';
-import { Home } from './pages/Home';
+import { routes } from './routes';
 
 function App() {
   return (
@@ -10,9 +9,9 @@ function App() {
       <Router>
         <GloablLayout>
           <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
+            {routes.map(({ path, component }) => (
+              <Route key={path} path={path} component={component} />
+            ))}
           </Switch>
         </GloablLayout>
       </Router>
