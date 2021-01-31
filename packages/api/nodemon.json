@@ -1,0 +1,5 @@
+{
+	"events": {
+		"crash": "kill -9 $(sudo lsof -t -i:4444)"
+	}
+}

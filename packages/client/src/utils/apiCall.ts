@@ -9,10 +9,10 @@ const buildUrl = (endpoint: string) => {
 };
 
 export const apiCall = {
-  get: (endpoint: string): Promise<any> => {
+  get: <T>(endpoint: string): Promise<T> => {
     return axios.get(buildUrl(endpoint)).then((res) => res.data);
   },
-  post: (endpoint: string, body: any): Promise<any> => {
+  post: <T>(endpoint: string, body: any): Promise<T> => {
     return axios.post(buildUrl(endpoint), body).then((res) => res.data);
   },
 };

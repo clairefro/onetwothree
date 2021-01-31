@@ -1,6 +1,7 @@
 // auth logic heavily inspired by https://livecodestream.dev/post/a-practical-guide-to-jwt-authentication-with-nodejs/
 
 const jwt = require("jsonwebtoken");
+const { User } = require("../models");
 
 let users = {
 	randy: { password: "tegridy" },
@@ -13,12 +14,13 @@ async function login(req, res) {
 	let user = null;
 
 	try {
-		user = await User.find({ username });
+		user = await User.findOne({ username });
 	} catch (e) {
-		return res.status(500).send("Uh oh, something went wrong in our backend...");
+		return res.status(500).send({ message: "Uh oh, something went wrong i}n our backend...", error: e });
 	}
-
-	if (!username || !password || !user || !user.password !== password) {
+	console.log({ user });
+	console.log({ username, password });
+	if (!username || !password || !user || user.password !== password) {
 		return res.status(401).send("Missing or invalid username or password");
 	}
 

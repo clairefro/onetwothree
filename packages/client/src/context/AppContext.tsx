@@ -1,16 +1,15 @@
 import * as React from 'react';
+import { UserDao, UserDaoImpl } from '../daos/userDao';
 
 interface AppContextI {
   user: User | null;
-  // login: (user: User) => void;
-  // logout: () => void;
+  userDao: UserDao;
   setUser: (user: User | null) => void;
 }
 
-const defaultContext = {
+export const defaultContext = {
   user: null,
-  // login: (_user: User) => console.warn('No context provider found.'),
-  // logout: () => console.warn('No context provider found.'),
+  userDao: new UserDaoImpl(),
   setUser: () => {},
 };
 

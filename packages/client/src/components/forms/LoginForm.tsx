@@ -5,20 +5,15 @@ import { Form } from '../blocks/Form';
 import { Input } from '../blocks/Input';
 import { ErrorMessage } from '@hookform/error-message';
 import { useContext } from '../../context/AppContext';
-
-interface LoginInput {
-  username: string;
-  password: string;
-}
+import type { LoginInput } from '../../daos/userDao';
 
 export const LoginForm: FC = () => {
   const { register, handleSubmit, errors } = useForm();
-  const { setUser } = useContext();
+  const { setUser, userDao } = useContext();
 
   const onSubmit = async (input: LoginInput) => {
-    // TODO: make call to backend
-
-    setUser(input);
+    const user = await userDao.login(input);
+    user && setUser(user);
   };
 
   return (

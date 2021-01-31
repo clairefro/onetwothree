@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { AppContext } from './context/AppContext';
+import { AppContext, defaultContext } from './context/AppContext';
 import { GloablLayout } from './layouts/GlobalLayout';
 import { routes } from './routes';
 
@@ -8,9 +8,8 @@ export type UserState = User | null;
 
 function App() {
   const [user, setUser] = useState<UserState>(null);
-  // const login = (u: User) => setUser(u);
-  // const logout = () => setUser(null);
-  const context = { user, setUser };
+  const context = { ...defaultContext, user, setUser };
+
   return (
     <div className="App">
       <AppContext.Provider value={context}>
