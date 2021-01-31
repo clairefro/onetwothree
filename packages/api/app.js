@@ -2,11 +2,19 @@ require("dotenv").config();
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
-const { verify } = require("./utils/verify");
 const mongoose = require("mongoose");
+const cors = require("cors");
+const { verify } = require("./utils/verify");
 const { login, logout, getUsers, addUser } = require("./controllers");
 
 const port = process.env.PORT || 4444;
+
+app.use(
+	cors({
+		origin: "http://localhost:8080",
+		credentials: true,
+	})
+);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

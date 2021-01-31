@@ -1,6 +1,7 @@
 {
   "name": "onetwothree-client",
   "version": "1.0.0",
+  "proxy": "http://localhost:4444/",
   "scripts": {
     "dev": "snowpack dev --config ./snowpack.config.js",
     "build": "snowpack build",
@@ -10,7 +11,9 @@
   },
   "dependencies": {
     "@hookform/error-message": "0.0.5",
+    "@types/axios": "0.14.0",
     "autoprefixer": "10.2.4",
+    "axios": "0.21.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-hook-form": "6.14.2",
