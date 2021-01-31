@@ -14,19 +14,28 @@ export const Game: FC<Props> = ({ lang }) => {
   const [isStarted, setStarted] = useState<boolean>(false);
   const [showStartCountdown, setShowStartCountdown] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
+  const [streak, setStreak] = useState<number>(0);
   const [lives, setLives] = useState<number>(initialLives);
   const [isGameover, setGameover] = useState<boolean>(false);
 
-  const startGame = () => {
-    setStarted(true);
+  const triggerCountdown = () => {
     setShowStartCountdown(true);
   };
 
+  const startGame = () => {
+    setShowStartCountdown(false);
+    setStarted(true);
+  };
+
   const gameControls = () => {
-    return !isStarted ? (
-      <Button onClick={startGame}>Start!</Button>
-    ) : (
-      <LeaveGameButton toPath="/" />
+    return (
+      <div className="mt-6">
+        {!isStarted ? (
+          <Button onClick={triggerCountdown}>Start!</Button>
+        ) : (
+          <LeaveGameButton toPath="/" />
+        )}
+      </div>
     );
   };
 
@@ -35,20 +44,28 @@ export const Game: FC<Props> = ({ lang }) => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-lg w-full p-6">
+    <div className="bg-gray-900 rounded-lg w-full p-6 flex flex-col items-center">
       <div>
         <p>Lives: {lives}</p>
         <p>Score: {score}</p>
       </div>
+
       {showStartCountdown && (
-        <Countdown
-          seconds={3}
-          onComplete={() => setShowStartCountdown(false)}
-          message="Get ready..."
-        />
+        <div className="my-4">
+          <Countdown
+            seconds={3}
+            onComplete={startGame}
+            message="Get ready..."
+          />
+        </div>
       )}
 
-      <RoundManager setScore={setScore} setLives={setLives} />
+      <RoundManager
+        setScore={setScore}
+        setLives={setLives}
+        setStreak={setStreak}
+        gameInPlay={isStarted && !isGameover}
+      />
       {gameControls()}
     </div>
   );

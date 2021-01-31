@@ -7,7 +7,6 @@ interface Props {
   colors?: [string, number][];
   onComplete?: (totalElapsedTime: number) => void | [boolean, number];
   message?: string;
-  size?: number;
 }
 
 // to make up for hacky import and appease typescript gods
@@ -21,7 +20,6 @@ export const Countdown: FC<Props> = ({
   colors = [[defaultColor, 0.33]],
   onComplete,
   message,
-  size = 200,
 }) => {
   return (
     <>
@@ -30,7 +28,6 @@ export const Countdown: FC<Props> = ({
         duration={seconds}
         colors={colors}
         onComplete={onComplete}
-        size={size}
       >
         {({ remainingTime }: { remainingTime: number }) => (
           <div className="flex flex-col text-green-400 items-center">
