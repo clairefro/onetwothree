@@ -16,10 +16,10 @@ module.exports = {
 
 const scoreSchema = new mongoose.Schema(
 	{
-		username: { type: String, required: true },
+		user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 		lang: { type: String, required: true },
-		score: { type: String, required: true },
-		streak: { type: String, required: true },
+		score: { type: Number, required: true },
+		streak: { type: Number, required: true },
 	},
 	{ timestamps: true }
 );

@@ -31,7 +31,7 @@ async function login(req, res) {
 	// WARNING! Do no use in production. Not secure.
 	// Omit options secure and httpOnly so that auth can be used in localhost
 	res.cookie("jwt", accessToken /* { secure: false, httpOnly: false }*/);
-	res.send({ username });
+	res.send({ username, id: user._id });
 }
 
 function logout(_req, res) {
@@ -60,7 +60,7 @@ async function signup(req, res) {
 
 	// WARNING! Do no use in production. Not secure.
 	res.cookie("jwt", accessToken);
-	res.send({ username });
+	res.send({ username, id: user._id });
 }
 
 module.exports = {
