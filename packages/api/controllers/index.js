@@ -1,4 +1,4 @@
-const { login, logout, signup } = require("./auth");
+const { login, logout, signup, me } = require("./auth");
 const { getUsers } = require("./user");
 const { addScore, getScores } = require("./score");
 
@@ -9,4 +9,5 @@ module.exports = {
 	signup,
 	addScore,
 	getScores,
+	me,
 };

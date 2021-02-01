@@ -63,8 +63,27 @@ async function signup(req, res) {
 	res.send({ username, id: user._id });
 }
 
+async function me(req, res) {
+	const { jwt: token } = req.cookies;
+	if (!token) return res.status(200).send(null);
+
+	try {
+		const { username } = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+		user = await User.findOne({ username }).exec();
+		if (!user) {
+			return res.status(400).send({ message: "Unknown user found to be logged in" });
+		}
+		res.send({ username, id: user._id });
+	} catch (e) {
+		console.log(e);
+		return res.status(200).send(null);
+	}
+}
+
 module.exports = {
 	login,
 	logout,
 	signup,
+	me,
 };

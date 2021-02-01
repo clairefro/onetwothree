@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { verify } = require("./utils/verify");
-const { login, logout, getUsers, signup, addScore, getScores } = require("./controllers");
+const { login, logout, getUsers, signup, addScore, getScores, me } = require("./controllers");
 
 const port = process.env.PORT || 4444;
 
@@ -23,11 +23,13 @@ app.use(cookieParser());
 app.post("/login", login);
 app.post("/logout", logout);
 
+app.get("/me", me);
+
 app.get("/users", getUsers);
 app.post("/users", signup);
 
 app.get("/scores", getScores);
-app.post("/scores", addScore);
+app.post("/scores", verify, addScore);
 
 app.post("/am-i-in", verify, (req, res) => {
 	res.send("You're in");

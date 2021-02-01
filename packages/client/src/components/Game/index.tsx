@@ -6,6 +6,10 @@ import { LeaveGameButton } from '../LeaveGameButton';
 import { GameoverSplash } from './GameoverSplash';
 import { GameStats } from './GameStats';
 import { RoundManager } from './RoundManager';
+// import * as SR from 'react-speech-recognition';
+// const { SpeechRecognition } = SR;
+
+// const SpeechRecognition = SR.SpeechRecognition;
 
 interface Props {
   lang: Languages;
@@ -24,6 +28,29 @@ export const Game: FC<Props> = ({ lang }) => {
       endGame();
     }
   }, [lives]);
+
+  // console.log(SR);
+  // @ts-ignore
+  // if (!new SpeechRecognition().browserSupportsSpeechRecognition()) {
+  //   return (
+  //     <div>
+  //       <p>
+  //         Oopsie! Your browser doesn't seem capable of speech recognition so you
+  //         can't play.
+  //       </p>
+  //       <p>
+  //         Modern version of Chrom usually work. For a detailed list of capabale
+  //         browsers, check out{' '}
+  //         <a
+  //           href="https://caniuse.com/mdn-api_speechrecognition"
+  //           rel="noreferrer noopener"
+  //         >
+  //           this list
+  //         </a>
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   const triggerCountdown = () => {
     setShowStartCountdown(true);
