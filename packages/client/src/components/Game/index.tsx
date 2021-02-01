@@ -61,7 +61,6 @@ export const Game: FC<Props> = ({ lang }) => {
     setStarted(true);
   };
 
-  // TODO: refactor. ternary bad.
   const gameControls = () => {
     if (showStartCountdown) {
       return null;
