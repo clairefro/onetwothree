@@ -1,6 +1,17 @@
+type Languages = 'en' | 'es' | 'fr' | 'ja';
+
 interface User {
   username: string;
-  id: string;
+  _id: string;
 }
 
-type Languages = 'en' | 'es' | 'fr' | 'ja';
+interface Score {
+  user: User;
+  score: number;
+  streak: number;
+  createdAt: string;
+}
+
+interface ScoresByLang {
+  [key in Languages]: Score[];
+}

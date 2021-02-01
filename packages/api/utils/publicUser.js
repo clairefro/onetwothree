@@ -1,4 +1,4 @@
-const publicUser = ({ username, _id }) => ({ username, id: _id });
+const publicUser = ({ username, _id }) => ({ username, _id });
 
 module.exports = {
 	publicUser,

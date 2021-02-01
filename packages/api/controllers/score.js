@@ -11,14 +11,12 @@ async function addScore(req, res) {
 }
 
 function sortByHighest(scores) {
-	console.log(scores.sort((a, b) => b.score - a.score));
 	return scores.sort((a, b) => b.score - a.score);
 }
 
 async function getScores(_req, res) {
 	try {
 		const scores = await Score.find().populate("user", "username");
-		console.log({ scores });
 		// sort into langs
 		scoresByLang = {};
 

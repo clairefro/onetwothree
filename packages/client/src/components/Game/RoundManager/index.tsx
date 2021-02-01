@@ -114,7 +114,7 @@ export const RoundManager: FC<Props> = ({
   return (
     <div className="flex flex-col justify-center">
       {currentNum && <CurrentNumber value={currentNum} />}
-      <UserAnswer setUserAnswer={setUserAnswer} />
+      <UserAnswer lang={lang} setUserAnswer={setUserAnswer} />
       <div className="my-4 mx-auto">
         <Countdown
           seconds={TIME_TO_ANSWER}

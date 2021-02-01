@@ -31,7 +31,7 @@ async function login(req, res) {
 	// WARNING! Do no use in production. Not secure.
 	// Omit options secure and httpOnly so that auth can be used in localhost
 	res.cookie("jwt", accessToken /* { secure: false, httpOnly: false }*/);
-	res.send({ username, id: user._id });
+	res.send({ username, _id: user._id });
 }
 
 function logout(_req, res) {
@@ -60,7 +60,7 @@ async function signup(req, res) {
 
 	// WARNING! Do no use in production. Not secure.
 	res.cookie("jwt", accessToken);
-	res.send({ username, id: user._id });
+	res.send({ username, _id: user._id });
 }
 
 async function me(req, res) {
@@ -74,9 +74,9 @@ async function me(req, res) {
 		if (!user) {
 			return res.status(400).send({ message: "Unknown user found to be logged in" });
 		}
-		res.send({ username, id: user._id });
+		console.log({ user });
+		res.send({ username, _id: user._id });
 	} catch (e) {
-		console.log(e);
 		return res.status(200).send(null);
 	}
 }

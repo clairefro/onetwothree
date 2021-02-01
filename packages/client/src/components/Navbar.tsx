@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from '../context/AppContext';
 import { Button } from './blocks/Button';
@@ -6,6 +6,13 @@ import { Button } from './blocks/Button';
 export const Navbar: FC = () => {
   const { setUser, user, userDao, notify } = useContext();
   const isLoggedIn = !!user;
+  useEffect(() => {
+    const getMe = async () => {
+      const me = await userDao.me();
+      if (me) setUser(me);
+    };
+    getMe();
+  }, []);
 
   const logout = async () => {
     try {
