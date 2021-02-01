@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { INITIAL_LIVES } from '../../constants';
+import { INITIAL_LIVES, LANG_OPTIONS } from '../../constants';
 import { Button } from '../blocks/Button';
 import { Countdown } from '../Countdown';
 import { LeaveGameButton } from '../LeaveGameButton';
@@ -61,16 +61,15 @@ export const Game: FC<Props> = ({ lang }) => {
     setStarted(true);
   };
 
+  // TODO: refactor. ternary bad.
   const gameControls = () => {
-    return (
-      <div className="mt-6">
-        {!isStarted ? (
-          <Button onClick={triggerCountdown}>Start!</Button>
-        ) : (
-          <LeaveGameButton toPath="/" />
-        )}
-      </div>
-    );
+    if (showStartCountdown) {
+      return null;
+    }
+    if (isStarted) {
+      return <LeaveGameButton toPath="/" />;
+    }
+    return <Button onClick={triggerCountdown}>Start!</Button>;
   };
 
   const endGame = () => {
@@ -123,7 +122,7 @@ export const Game: FC<Props> = ({ lang }) => {
         <GameoverSplash score={score} streak={streak} />
       </div>
       <Button onClick={resetGame} className="mb-4">
-        Play again in same language
+        Play again in {LANG_OPTIONS[lang]}
       </Button>
       <LeaveGameButton toPath="/" confirmModal={false} />
     </div>
